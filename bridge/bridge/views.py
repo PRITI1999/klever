@@ -18,11 +18,17 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.defaults import bad_request, permission_denied, page_not_found, server_error
+from django.views.generic.base import TemplateView
 
 
 def index_page(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('jobs:tree'))
+    return HttpResponseRedirect(reverse('users:login'))
+
+def report_page(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('sparse:test-report'))
     return HttpResponseRedirect(reverse('users:login'))
 
 

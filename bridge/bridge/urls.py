@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include(('users.urls', 'users'), namespace='users')),
     path('jobs/', include(('jobs.urls', 'jobs'), namespace='jobs')),
+    path('sparse/', include(('sparse.urls','sparse'), namespace='sparse')),
     path('reports/', include(('reports.urls', 'reports'), namespace='reports')),
     path('marks/', include(('marks.urls', 'marks'), namespace='marks')),
     path('service/', include(('service.urls', 'service'), namespace='service')),
