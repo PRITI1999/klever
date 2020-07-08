@@ -15,7 +15,15 @@
 # limitations under the License.
 #
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
+from tools.profiling import LoggedCallMixin
+from bridge.CustomViews import DataViewMixin
 
-class TestReport(TemplateView):
-    template_name = 'bridge/base.html'
+class TestReport(LoginRequiredMixin, LoggedCallMixin, DataViewMixin, TemplateView):
+    template_name = 'bridge/manage_sparse.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        #context['tabledata'] = SafeMarksTable(self.request.user, self.get_view(VIEW_TYPES[8]), self.request.GET)
+        return context

@@ -70,7 +70,7 @@
         {% if user.is_authenticated %}
             <a class="browse item">{% trans 'Tools' %}<i class="dropdown icon"></i></a>
             <div class="ui fluid inverted popup bottom left transition hidden" style="max-width: 10%;">
-                  <a class="item" href="{% url 'sparse:test-report' %}">{% trans 'Sparse' %}</a>
+                  <a class="item" href="{% url 'sparse:manage-errors' %}">{% trans 'Sparse' %}</a>
             </div>
             <a class="browse item">{% trans 'Menu' %}<i class="dropdown icon"></i></a>
             <div class="ui fluid inverted popup bottom left transition hidden" style="max-width: 70%;">

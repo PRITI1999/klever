@@ -19,5 +19,5 @@ from django.urls import path, include
 from sparse import views
 
 urlpatterns = [
-    path('', views.TestReport.as_view(), name='test-report')
+    path('', views.TestReport.as_view(), name='manage-errors')
 ]
