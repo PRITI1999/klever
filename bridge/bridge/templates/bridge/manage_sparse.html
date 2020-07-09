@@ -25,18 +25,9 @@
     <div class="ui grid" style="overflow-x:auto;">
         <table class="ui compact celled sortable structured striped table green">
             <tbody>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
+	      {% for name in names %}
+	          <tr><th style="color:red;">{{name}}</th></tr>
+	      {% endfor %}
             </tbody>
         </table>
     </div>

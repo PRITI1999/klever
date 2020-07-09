@@ -24,6 +24,11 @@ class TestReport(LoginRequiredMixin, LoggedCallMixin, DataViewMixin, TemplateVie
     template_name = 'bridge/manage_sparse.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        names = [1, 2, 3, 4]
+        return {
+            'names': names
+        }
+        #return render(request, template_name, context)
+        #context = super().get_context_data(**kwargs)
         #context['tabledata'] = SafeMarksTable(self.request.user, self.get_view(VIEW_TYPES[8]), self.request.GET)
-        return context
+        #return context
