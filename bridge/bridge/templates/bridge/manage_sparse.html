@@ -17,27 +17,32 @@
 {% endcomment %}
 
 {% load i18n %}
+{% load tz %}
 {% load static %}
 {% load compress %}
 
 {% block title %}{% trans 'Manage Errors' %}{% endblock %}
+
 {% block body_block %}
-    <div class="ui grid" style="overflow-x:auto;">
-        <table class="ui compact celled sortable structured striped table green">
-            <tbody>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
-              <tr>
-                  <th>{% trans '#' %}</th>
-              </tr>
-            </tbody>
-        </table>
-    </div>
+        <div style="overflow-x:auto;max-height: 83vh;overflow-y:auto;">
+            <table class="ui compact celled sortable structured striped table orange">
+                <thead>
+                        <tr>
+                        {% for coldata in tabledata.headers %}
+                            <th style="background: #fff1df;">{{ coldata }}</th>
+                        {% endfor %}
+                        </tr>
+                </thead>
+                <tbody>
+                    {% for row_data in tabledata.values %}
+                        <tr>
+                            {% for v in row_data %}
+                                <td>
+                                    {{v}}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {%  endfor %}
+                </tbody>
+            </table>
 {% endblock %}
