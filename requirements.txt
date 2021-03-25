@@ -28,7 +28,7 @@ psycopg2==2.8.5
 Pygments==2.6.1
 python-slugify==4.0.0
 pytz==2020.1
-PyYAML==5.3.1
+PyYAML==5.4
 rcssmin==1.0.6
 requests==2.23.0
 rjsmin==1.1.0
