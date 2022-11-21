@@ -122,7 +122,26 @@ class CProgram:
         elif os.path.isfile(src):
             self.logger.debug('Source code is provided in form of archive')
             with tarfile.open(src, encoding='utf8') as TarFile:
-                TarFile.extractall(self.work_src_tree)
+                def is_within_directory(directory, target):
+                    
+                    abs_directory = os.path.abspath(directory)
+                    abs_target = os.path.abspath(target)
+                
+                    prefix = os.path.commonprefix([abs_directory, abs_target])
+                    
+                    return prefix == abs_directory
+                
+                def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+                
+                    for member in tar.getmembers():
+                        member_path = os.path.join(path, member.name)
+                        if not is_within_directory(path, member_path):
+                            raise Exception("Attempted Path Traversal in Tar File")
+                
+                    tar.extractall(path, members, numeric_owner=numeric_owner) 
+                    
+                
+                safe_extract(TarFile, self.work_src_tree)
         else:
             raise ValueError('Source code is not provided at "{0}"'.format(src))
 
@@ -442,7 +461,26 @@ class Linux(CProgram):
         elif os.path.isfile(ext_modules):
             self.logger.debug('External loadable Linux kernel modules source code is provided in form of archive')
             with tarfile.open(ext_modules, encoding='utf8') as TarFile:
-                TarFile.extractall(work_src_tree)
+                def is_within_directory(directory, target):
+                    
+                    abs_directory = os.path.abspath(directory)
+                    abs_target = os.path.abspath(target)
+                
+                    prefix = os.path.commonprefix([abs_directory, abs_target])
+                    
+                    return prefix == abs_directory
+                
+                def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+                
+                    for member in tar.getmembers():
+                        member_path = os.path.join(path, member.name)
+                        if not is_within_directory(path, member_path):
+                            raise Exception("Attempted Path Traversal in Tar File")
+                
+                    tar.extractall(path, members, numeric_owner=numeric_owner) 
+                    
+                
+                safe_extract(TarFile, work_src_tree)
 
         self.logger.info('Make canonical working source tree of external loadable Linux kernel modules')
         work_src_tree_root = None
